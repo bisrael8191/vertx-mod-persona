@@ -3,9 +3,9 @@
 
   "worker": true,
 
-  "description":"Persona verification module",
+  "description":"Mozilla Persona verification module",
   "licenses": ["The Apache Software License Version 2.0"],
   "author": "Brad Israel",
-  "keywords": ["auth", "authentication", "authorization", "login", "security", "session"],
+  "keywords": ["auth", "authentication", "authorization", "login", "security", "persona"],
   "homepage": "https://github.com/bisrael8191/vertx-mod-persona"
 }

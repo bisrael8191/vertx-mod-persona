@@ -73,8 +73,8 @@ Please edit the details below.
  */
 def configurePom(def pom) {
   pom.project {
-    name 'vertx-mod-persona'
-    description 'Persona verification module'
+    name modname
+    description 'Mozilla Persona verification module'
     inceptionYear '2013'
     packaging 'jar'
 
