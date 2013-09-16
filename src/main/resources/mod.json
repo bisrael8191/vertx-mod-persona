@@ -1,0 +1,11 @@
+{
+  "main":"com.bisrael8191.vertx.mods.persona.Persona",
+
+  "worker": true,
+
+  "description":"Persona verification module",
+  "licenses": ["The Apache Software License Version 2.0"],
+  "author": "Brad Israel",
+  "keywords": ["auth", "authentication", "authorization", "login", "security", "session"],
+  "homepage": "https://github.com/bisrael8191/vertx-mod-persona"
+}
