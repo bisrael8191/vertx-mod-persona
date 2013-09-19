@@ -29,10 +29,14 @@ import org.vertx.java.platform.Verticle;
  */
 public class PingVerticle extends Verticle {
 
+  private static final String DEFAULT_ADDRESS = "ping-address";
+
   public void start() {
 
-
-    vertx.eventBus().registerHandler("ping-address", new Handler<Message<String>>() {
+    // Get the event bus address to listen for verification requests
+    String address = container.config().getString("address", DEFAULT_ADDRESS);
+        
+    vertx.eventBus().registerHandler(address, new Handler<Message<String>>() {
       @Override
       public void handle(Message<String> message) {
         message.reply("pong!");

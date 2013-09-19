@@ -1,12 +1,34 @@
-# Vert.x Gradle Template
+# Module Name
 
-Template project for creating a Vert.x module with a Gradle build.
+This is the default test module from the Vert.x template.
 
-Clone this and adapt it to easily develop Vert.x modules using Gradle as your build tool.
+## Dependencies
 
-By default this module contains a simple Java verticle which listens on the event bus and responds to `ping!`
-messages with `pong!`.
+None.
 
-This template also shows you how to write tests in Java, Groovy, Ruby and Python
+## Name
 
-See the [build script](build.gradle) for the list of useful tasks
+The module name is `my-module`.
+
+## Configuration
+
+The Persona module requires the following configuration:
+
+    {
+        "address": <string>
+    }
+
+Let's take a look at each field in turn:
+
+* `address` The main address for the verticle. Defaults to `ping-address`.
+
+For example:
+
+    {
+        "address": "different-ping-address"
+    }
+
+## Operations
+
+### Ping
+Send any string to the module's address and receive a `pong!` string back.
