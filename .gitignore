@@ -1,22 +1,28 @@
+# Filesystem
 .DS_Store
+.directory
+
+# Build tools
 .gradle
-.idea
-.classpath
-.project
-.settings
-.yardoc
-.yardopts
 bin
 build
 target
+/mods
+test-output
+test-results
+test-tmp
+*.class
+.yardoc
+.yardopts
+
+# IDEA
+.idea
 out
 *.iml
 *.ipr
 *.iws
-test-output
-Scratch.java
-ScratchTest.java
-test-results
-test-tmp
-*.class
-mods
+
+# Eclipse
+.classpath
+.project
+.settings
