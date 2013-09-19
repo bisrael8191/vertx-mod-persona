@@ -20,8 +20,8 @@ apply plugin: 'signing'
 if (!hasProperty('bintrayUsername')) {
 	ext.bintrayUsername = ''
 }
-if (!hasProperty('bintrayPassword')) {
-	ext.bintrayPassword = ''
+if (!hasProperty('bintrayApiKey')) {
+	ext.bintrayApiKey = ''
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -36,7 +36,7 @@ signing {
 
 uploadArchives {
 	group 'build'
-	description = "Does a maven deploy of archives artifacts"
+	description = "Deploy module to bintray"
 
 	repositories {
 		mavenDeployer {
@@ -44,9 +44,9 @@ uploadArchives {
 
 			configuration = configurations.archives
 
-			// Set 'bintrayUsername' and  'bintrayPassword' (API Key) in ~/.gradle/gradle.properties
+			// Set 'bintrayUsername' and  'bintrayApiKey' in ~/.gradle/gradle.properties
 			repository(url: bintrayAddress) {
-				authentication(userName: bintrayUsername, password: bintrayPassword)
+				authentication(userName: bintrayUsername, password: bintrayApiKey)
 			}
 
 			if (isReleaseVersion) {
