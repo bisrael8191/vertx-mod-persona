@@ -50,6 +50,7 @@ public class Persona extends BusModBase {
 
     private static final String DEFAULT_VERIFY_ADDRESS = "persona.verify";
     private static final String DEFAULT_AUDIENCE = "http://localhost:8080";
+    private static final String PERSONA_VERIFIER = "verifier.login.persona.org";
 
     // Configuration values
     private String verifyAddress;
@@ -100,7 +101,17 @@ public class Persona extends BusModBase {
         }
 
         // Create an SSL connection to Persona's REST api
-        HttpClient personaClient = getVertx().createHttpClient().setSSL(true).setHost("verifier.login.persona.org").setPort(443);
+        HttpClient personaClient =
+                getVertx().createHttpClient().setSSL(true).setVerifyHost(true).setHost(PERSONA_VERIFIER).setPort(443);
+
+        // Make sure host verification is turned on
+        if(!personaClient.isVerifyHost()) {
+            sendStatus(
+                    "error"
+                    , verifyMessage
+                    , new JsonObject().putString("message", "Host verification turned off for " + PERSONA_VERIFIER));
+            return;
+        }
 
         // Create a handler for the response from the /verify call
         HttpClientRequest personaRequest = personaClient.post("/verify", new Handler<HttpClientResponse>() {
@@ -124,13 +135,9 @@ public class Persona extends BusModBase {
                             verification.removeField("status");
 
                             if(valid) {
-                                //System.out.println("User validated: " + verification.toString());
-
                                 // Send the verification back with an 'ok' status
                                 sendOK(verifyMessage, verification);
                             } else {
-                                //System.out.println("User not validated: " + verification.toString());
-
                                 // Send the verification back with an 'error' status
                                 sendStatus("error", verifyMessage, new JsonObject().putString("message", verification.getString("reason")));
                             }
